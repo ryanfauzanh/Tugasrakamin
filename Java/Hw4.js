@@ -1,4 +1,5 @@
 //Buatlah 100 nilai random (1 sampai 50) pada 1 array
+
 let nilairandom = [];
 for (let i = 1; i <= 100; i++) {
   let nilai = Math.floor(Math.random() * 50);

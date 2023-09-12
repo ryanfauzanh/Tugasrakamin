@@ -1,0 +1,92 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+
+    <h1>Halo Ryan Welcome To Our Website</h1>
+    <p>List Nama Karakter</p>
+    <ul>
+        <li>Majin Boo</li>
+        <li>Goku</li>
+        <li>Gohan</li>
+        <li>Piccolo</li>
+    <ul>
+
+    <p>List Nama Karakter</p>
+    <ul>
+        <li>Awakening Majin Boo</li>
+        <li>Awakening Goku</li>
+        <li>Awakening Gohan</li>
+        <li>Awakening Piccolo</li>
+    <ul>
+    
+    Nama <input type="text" id="nama">  
+    <button onclick="getDataInput()">Submit</button>
+    <button onclick="testfunction()">Show Data Dari Selector</button>
+    <br>
+    notes <input type="text" id="notes">
+    <button onclick="getDataInput()">Terapkan</button>
+    <br>
+    <br>
+      <ul id="Nama Karakter 2"></ul>
+    <br>
+    <p id="pilih_class"></p>
+    <p class="kelas"></p>
+    <p class="kelas"></p>
+    <p class="kelas"></p>
+
+    <script>
+      let data =[]
+      let opt = []
+    function getDataInput(){
+      const input_kelas = document.getElementById("notes")
+      console.log(input_kelas.value)
+      array.push(input_kelas.value)
+      console.log(opt)
+
+    }
+    function getDataInput(){
+        const nama_input = document.getElementById("nama")
+        console.log(nama_input.value)
+        data.push(nama_input.value)
+        console.log(data)
+        const node = document.createElement("li")
+        const value_li = document.createTextNode(nama_input.value)
+        node.appendChild(value_li)
+        document.getElementById("Nama Karakter 2").appendChild(node)
+    }
+    function testfunction(){
+      const list_karakter = document.getElementsByTagName("li")
+    document.getElementById("pilih_class").innerHTML = list_karakter[6].innerHTML
+    list_karakter[7].innerHTML = "Awakening The Great Piccolo "
+    for (let index = 0; index < list_karakter.length; index++){
+      console.log(list_karakter[index])
+    }
+    console.log(list_karakter)
+    const karakter_id = document.getElementsByClassName("kelas")
+    karakter_id[0].innerHTML = "Rakamin Id"
+    karakter_id[1].innerHTML = "Rakamin tools"
+    karakter_id[1].innerHTML = "Rakamin Learn"
+      }
+    </script>
+    
+    <style>
+          ul {
+    list-style-type: none; /* Menghilangkan marker dari daftar */
+    padding: 0; /* Menghilangkan padding pada daftar */
+  }
+
+  li {
+    font-size: 14px; /* Mengatur ukuran font untuk daftar */
+    margin-left: none; /* Menambahkan margin kiri pada daftar */
+    text-align: left; /* Mengatur teks daftar menjadi rata kiri */
+  }
+    </style>
+
+    </body>
+    </html>
+
+    

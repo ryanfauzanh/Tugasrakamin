@@ -1,0 +1,62 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="styling.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Aplikasi Pendaftaran Pestapora</h1>
+    <ul>
+      <li><a href="#">Registrasi</a></li>
+      <li><a href="#">List Pendaftaran</a></li>
+    </ul>
+
+    <!-- Tab registrasi -->
+    <div id="Registrasi" class="tab tab-active">
+      <form id="RegistrationForm">
+        <label for="Nama">Nama:</label>
+        <input type="text" id="Nama" name="Nama" required minlength="10" />
+        <br /><br />
+
+        <label for="Umur">Umur:</label>
+        <input type="text" id="Nama" name="Nama" required minlength="25" />
+        <br /><br />
+
+        <label for="uangSangu">uangSangu:</label>
+        <input
+          type="text"
+          id="uangSangu"
+          name="uangSangu"
+          required
+          min="10000"
+          max="100000"
+        />
+        <br /><br />
+      </form>
+    </div>
+
+    <div id="ListPendaftar" class="Tab"> 
+    <h2>List Pendaftar</h2>
+    <table id="pendaftaranTable">
+    <thead>
+        <tr>
+        <th>Nama</th>
+        <th>Umur</th>
+        <th>Uang Sangu</th>
+        </tr>
+    <tbody>
+
+    </tbody>
+    </table>
+
+
+    </thead>
+
+
+    </div>
+
+    <script src="script.js"></script>
+
+  </body>
+</html>
