@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Registrasi dan List Pendaftar</title>
+    <style>
+      /* Gaya CSS untuk tampilan tab */
+      .tab {
+        overflow: hidden;
+      }
+
+      .tab button {
+        background-color: #f2f2f2;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 10px 20px;
+      }
+
+      .tab button:hover {
+        background-color: #ddd;
+      }
+
+      .tabcontent {
+        display: none;
+        padding: 20px;
+      }
+
+      /* Gaya CSS untuk tampilan tab */
+      .tab {
+        overflow: hidden;
+        background-color: #333;
+      }
+
+      .tab button {
+        background-color: #444;
+        color: white;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 10px 20px;
+      }
+
+      .tab button:hover {
+        background-color: #555;
+      }
+
+      .tabcontent {
+        display: none;
+        padding: 20px;
+        background-color: #f2f2f2;
+      }
+
+      /* Gaya CSS untuk tabel List Pendaftar */
+      #pendaftarTable {
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      #pendaftarTable th,
+      #pendaftarTable td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+
+      #pendaftarTable tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+
+      #pendaftarTable th {
+        background-color: #4caf50;
+        color: white;
+      }
+
+      /* Gaya CSS untuk tombol submit */
+      input[type="submit"] {
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+      }
+
+      /* Gaya CSS untuk pesan error */
+      .error-message {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="tab">
+      <button id="tabRegistrasi" onclick="openTab('Registrasi')">
+        Registrasi
+      </button>
+      <button id="tabListPendaftar" onclick="openTab('ListPendaftar')">
+        List Pendaftar
+      </button>
+    </div>
+
+    <!-- Tab Konten Registrasi -->
+    <div id="Registrasi" class="tabcontent">
+      <h2>Form Registrasi</h2>
+      <form id="registrasiForm">
+        <label for="nama">Nama (Minimal 10 karakter):</label>
+        <input
+          type="text"
+          id="nama"
+          name="nama"
+          minlength="10"
+          required
+        /><br /><br />
+
+        <label for="umur">Umur (Minimal 25 tahun):</label>
+        <input
+          type="number"
+          id="umur"
+          name="umur"
+          min="25"
+          required
+        /><br /><br />
+
+        <label for="uangSangu"
+          >Uang Sangu (Minimal 100 ribu dan Maksimal 1 juta):</label
+        >
+        <input
+          type="number"
+          id="uangSangu"
+          name="uangSangu"
+          min="100000"
+          max="1000000"
+          required
+        /><br /><br />
+
+        <input type="submit" value="Submit" />
+      </form>
+    </div>
+
+    <!-- Tab Konten List Pendaftar -->
+    <div id="ListPendaftar" class="tabcontent">
+      <h2>List Pendaftar</h2>
+      <table id="pendaftarTable">
+        <thead>
+          <tr>
+            <th>Nama</th>
+            <th>Umur</th>
+            <th>Uang Sangu</th>
+          </tr>
+        </thead>
+        <tbody id="resume"></tbody>
+      </table>
+    </div>
+
+    <script>
+      function openTab(tabName) {
+        var i;
+        var tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+          tabcontent[i].style.display = "none";
+        }
+        document.getElementById(tabName).style.display = "block";
+      }
+
+      // Fungsi untuk menambah data pendaftar ke tabel
+      document
+        .getElementById("registrasiForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          var nama = document.getElementById("nama").value;
+          var umur = document.getElementById("umur").value;
+          var uangSangu = document.getElementById("uangSangu").value;
+
+          // Validasi data
+          if (
+            nama.length < 10 ||
+            umur < 25 ||
+            uangSangu < 100000 ||
+            uangSangu > 1000000
+          ) {
+            alert("Data tidak memenuhi kriteria. Silakan periksa kembali.");
+            return;
+          }
+
+          // Tambahkan data ke tabel
+          var table = document
+            .getElementById("pendaftarTable")
+            .getElementsByTagName("tbody")[0];
+          var row = table.insertRow(-1);
+          var cell1 = row.insertCell(0);
+          var cell2 = row.insertCell(1);
+          var cell3 = row.insertCell(2);
+          cell1.innerHTML = nama;
+          cell2.innerHTML = umur;
+          cell3.innerHTML = uangSangu;
+
+          // Hitung rata-rata umur dan uang sangu
+          var rows = table.rows.length - 1;
+          var totalUmur = 0;
+          var totalUangSangu = 0;
+
+          for (var i = 1; i <= rows; i++) {
+            totalUmur += parseInt(table.rows[i].cells[1].innerHTML);
+            totalUangSangu += parseInt(table.rows[i].cells[2].innerHTML);
+          }
+
+          var rataRataUmur = totalUmur / rows;
+          var rataRataUangSangu = totalUangSangu / rows;
+
+          // Tampilkan rata-rata pada tab List Pendaftar
+          document.getElementById("resume").innerHTML = `
+            <tr>
+                <td colspan="2">Rata-rata umur</td>
+                <td>${rataRataUmur.toFixed(2)}</td>
+            </tr>
+            <tr>
+                <td colspan="2">Rata-rata uang sangu</td>
+                <td>${rataRataUangSangu.toFixed(2)}</td>
+            </tr>
+        `;
+
+          // Bersihkan form
+          document.getElementById("registrasiForm").reset();
+        });
+    </script>
+  </body>
+</html>
